@@ -131,6 +131,12 @@ public class RNDatePickerDialogModule extends ReactContextBaseJavaModule {
     UiThreadUtil.runOnUiThread(new Runnable() {
       @Override
       public void run() {
+        String locale = options.getString("locale");
+
+        if (locale != null) {
+          Common.setLocale(activity, locale);
+        }
+
         RNDatePickerDialogFragment oldFragment =
                 (RNDatePickerDialogFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
 

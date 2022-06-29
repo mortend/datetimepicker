@@ -54,6 +54,8 @@ export default function Picker({
   textColor,
   accentColor,
   themeVariant,
+  onBeginEdit,
+  onEndEdit,
   onChange,
   mode = ANDROID_MODE.date,
   display: providedDisplay = IOS_DISPLAY.default,
@@ -92,6 +94,28 @@ export default function Picker({
     [display, mode],
   );
 
+  const _onBeginEdit = (event: NativeEventIOS) => {
+    const timestamp = event.nativeEvent.timestamp;
+    let date;
+
+    if (timestamp) {
+      date = new Date(timestamp);
+    }
+
+    onBeginEdit && onBeginEdit(event, date);
+  };
+
+  const _onEndEdit = (event: NativeEventIOS) => {
+    const timestamp = event.nativeEvent.timestamp;
+    let date;
+
+    if (timestamp) {
+      date = new Date(timestamp);
+    }
+
+    onEndEdit && onEndEdit(event, date);
+  };
+
   const _onChange = (event: NativeEventIOS) => {
     const timestamp = event.nativeEvent.timestamp;
     // $FlowFixMe Cannot assign object literal to `unifiedEvent` because number [1] is incompatible with undefined [2] in property `nativeEvent.timestamp`.
@@ -125,6 +149,8 @@ export default function Picker({
       mode={mode}
       minuteInterval={minuteInterval}
       timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      onBeginEdit={_onBeginEdit}
+      onEndEdit={_onEndEdit}
       onChange={_onChange}
       textColor={textColor}
       accentColor={accentColor}

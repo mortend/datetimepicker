@@ -108,6 +108,8 @@ RCT_EXPORT_VIEW_PROPERTY(minimumDate, NSDate)
 RCT_EXPORT_VIEW_PROPERTY(maximumDate, NSDate)
 RCT_EXPORT_VIEW_PROPERTY(minuteInterval, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(enabled, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(onBeginEdit, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onEndEdit, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 
 RCT_REMAP_VIEW_PROPERTY(mode, datePickerMode, UIDatePickerMode)
