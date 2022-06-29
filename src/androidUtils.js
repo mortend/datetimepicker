@@ -36,6 +36,7 @@ export function getOpenPicker({
   timeZoneOffsetInMinutes,
   positiveButtonLabel,
   negativeButtonLabel,
+  locale,
 }: Params): PresentPickerCallback {
   switch (mode) {
     case ANDROID_MODE.time:
@@ -50,6 +51,7 @@ export function getOpenPicker({
           timeZoneOffsetInMinutes,
           positiveButtonLabel,
           negativeButtonLabel,
+          locale,
         });
     default:
       return () =>
@@ -63,6 +65,7 @@ export function getOpenPicker({
           timeZoneOffsetInMinutes,
           positiveButtonLabel,
           negativeButtonLabel,
+          locale,
         });
   }
 }
@@ -82,7 +85,7 @@ export function timeZoneOffsetDateSetter(
 }
 
 export function validateAndroidProps(props: AndroidNativeProps) {
-  sharedPropsValidation({value: props?.value});
+  sharedPropsValidation?.({value: props?.value});
   const {mode, display} = props;
   invariant(
     !(display === ANDROID_DISPLAY.calendar && mode === ANDROID_MODE.time) &&

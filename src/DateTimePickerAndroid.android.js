@@ -37,6 +37,7 @@ function open(props: AndroidNativeProps) {
     timeZoneOffsetInMinutes,
     onChange,
     onError,
+    locale,
   } = props;
   validateAndroidProps(props);
   invariant(originalValue, 'A date or time must be specified as `value` prop.');
@@ -54,6 +55,7 @@ function open(props: AndroidNativeProps) {
     positiveButtonLabel,
     neutralButtonLabel,
     negativeButtonLabel,
+    locale,
   });
 
   const presentPicker = async () => {
