@@ -127,7 +127,7 @@ export type IOSNativeProps = Readonly<
      * This is called when the user opens the date or time UI.
      * The first argument is an Event, the second a selected Date.
      */
-    onBeginEdit?: (event: Event, date?: Date) => void;
+    onBeginEdit?: (event: DateTimePickerEvent, date?: Date) => void;
 
     /**
      * End edit handler.
@@ -135,7 +135,7 @@ export type IOSNativeProps = Readonly<
      * This is called when the user closes the date or time UI.
      * The first argument is an Event, the second a selected Date.
      */
-    onEndEdit?: (event: Event, date?: Date) => void;
+    onEndEdit?: (event: DateTimePickerEvent, date?: Date) => void;
   }
 >;
 
@@ -147,6 +147,11 @@ export type AndroidNativeProps = Readonly<
        * The date picker mode.
        */
       mode?: AndroidMode;
+
+      /**
+       * The date picker locale.
+       */
+      locale?: string;
 
       /**
        * The display options.
