@@ -52,6 +52,8 @@ export default function Picker({
   minuteInterval,
   timeZoneOffsetInMinutes,
   textColor,
+  onBeginEdit,
+  onEndEdit,
   onChange,
   ...otherProps
 }: IOSNativeProps) {
@@ -84,6 +86,28 @@ export default function Picker({
     },
     [display, mode],
   );
+
+  const _onBeginEdit = (event: Event) => {
+    const timestamp = event.nativeEvent.timestamp;
+    let date;
+
+    if (timestamp) {
+      date = new Date(timestamp);
+    }
+
+    onBeginEdit && onBeginEdit(event, date);
+  };
+
+  const _onEndEdit = (event: Event) => {
+    const timestamp = event.nativeEvent.timestamp;
+    let date;
+
+    if (timestamp) {
+      date = new Date(timestamp);
+    }
+
+    onEndEdit && onEndEdit(event, date);
+  };
 
   const _onChange = (event: Event) => {
     const timestamp = event.nativeEvent.timestamp;
@@ -118,6 +142,8 @@ export default function Picker({
       mode={mode}
       minuteInterval={minuteInterval}
       timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      onBeginEdit={_onBeginEdit}
+      onEndEdit={_onEndEdit}
       onChange={_onChange}
       textColor={textColor}
       onStartShouldSetResponder={() => true}

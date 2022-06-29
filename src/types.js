@@ -127,6 +127,11 @@ export type AndroidNativeProps = $ReadOnly<{|
   ...TimeOptions,
 
   /**
+   * The date picker locale.
+   */
+  locale?: ?string,
+
+  /**
    * The date picker mode.
    */
   mode: AndroidMode,
