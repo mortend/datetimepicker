@@ -12,6 +12,8 @@
 
 @interface RNDateTimePicker ()
 
+@property (nonatomic, copy) RCTBubblingEventBlock onBeginEdit;
+@property (nonatomic, copy) RCTBubblingEventBlock onEndEdit;
 @property (nonatomic, copy) RCTBubblingEventBlock onChange;
 @property (nonatomic, assign) NSInteger reactMinuteInterval;
 
@@ -24,6 +26,10 @@
   if ((self = [super initWithFrame:frame])) {
     [self addTarget:self action:@selector(didChange)
                forControlEvents:UIControlEventValueChanged];
+    [self addTarget:self action:@selector(didBeginEdit)
+               forControlEvents:UIControlEventEditingDidBegin];
+    [self addTarget:self action:@selector(didEndEdit)
+               forControlEvents:UIControlEventEditingDidEnd];
     _reactMinuteInterval = 1;
   }
   return self;
@@ -35,6 +41,20 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 {
   if (_onChange) {
     _onChange(@{ @"timestamp": @(self.date.timeIntervalSince1970 * 1000.0) });
+  }
+}
+
+- (void)didBeginEdit
+{
+  if (_onBeginEdit) {
+    _onBeginEdit(@{ @"timestamp": @(self.date.timeIntervalSince1970 * 1000.0) });
+  }
+}
+
+- (void)didEndEdit
+{
+  if (_onEndEdit) {
+    _onEndEdit(@{ @"timestamp": @(self.date.timeIntervalSince1970 * 1000.0) });
   }
 }
 

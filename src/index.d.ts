@@ -120,6 +120,22 @@ export type IOSNativeProps = Readonly<
      * Is this picker disabled?
      */
     disabled?: boolean;
+
+    /**
+     * Begin edit handler.
+     *
+     * This is called when the user opens the date or time UI.
+     * The first argument is an Event, the second a selected Date.
+     */
+    onBeginEdit?: (event: Event, date?: Date) => void;
+
+    /**
+     * End edit handler.
+     *
+     * This is called when the user closes the date or time UI.
+     * The first argument is an Event, the second a selected Date.
+     */
+    onEndEdit?: (event: Event, date?: Date) => void;
   }
 >;
 

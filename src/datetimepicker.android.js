@@ -26,6 +26,7 @@ export default function RNDateTimePicker(props: AndroidNativeProps): null {
     positiveButtonLabel,
     negativeButtonLabel,
     onError,
+    locale,
   } = props;
   invariant(value, 'A date or time must be specified as `value` prop.');
   const valueTimestamp = value.getTime();
@@ -52,6 +53,7 @@ export default function RNDateTimePicker(props: AndroidNativeProps): null {
         negativeButtonLabel,
         onError,
         onChange,
+        locale,
       };
       DateTimePickerAndroid.open(params);
     },
